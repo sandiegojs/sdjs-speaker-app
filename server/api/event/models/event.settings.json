@@ -24,6 +24,10 @@
     "meetupId": {
       "type": "string",
       "required": true
+    },
+    "talks": {
+      "collection": "talk",
+      "via": "event"
     }
   }
 }

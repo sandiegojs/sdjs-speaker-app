@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "talks",
+  "info": {
+    "name": "Talk"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Approved",
+        "Denied",
+        "Confirmed",
+        "Disengaged"
+      ],
+      "required": true,
+      "default": "Pending"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "reminderSent": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "topic": {
+      "type": "string",
+      "required": true
+    },
+    "owner": {
+      "via": "talks",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "adminNotes": {
+      "type": "text"
+    },
+    "event": {
+      "via": "talks",
+      "model": "event"
+    }
+  }
+}
