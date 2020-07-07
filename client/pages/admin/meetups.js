@@ -1,3 +1,4 @@
+import withAuth from '../../hoc/withAuth';
 import Query from "../../components/query";
 import MEETUPS_QUERY from "../../apollo/queries/meetup/meetups";
 
@@ -33,4 +34,4 @@ const AdminMeetups = () => {
     );
 }
 
-export default AdminMeetups;
+export default withAuth(AdminMeetups);
