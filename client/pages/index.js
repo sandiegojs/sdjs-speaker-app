@@ -8,7 +8,7 @@ export default () => {
     <h1>sandiego.js</h1>
       <h2>Speaker Pipeline</h2>
       <p>Share your perspective with the San Diego JavaScript community</p>
-      <Link href='/SignUp'>
+      <Link href='/signup'>
         <button className="btn">Get Started</button>
       </Link>
     </div>
