@@ -1,13 +1,17 @@
+import { ApolloProvider } from "@apollo/react-hooks";
+
 import '../assets/scss/style.scss';
-
 import Layout from '../components/layout';
+import withData from "../utils/apollo";
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, apollo }) => {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ApolloProvider client={apollo}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ApolloProvider>
   )
 };
 
-export default App;
+export default withData(App);

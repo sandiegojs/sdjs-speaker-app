@@ -5,4 +5,8 @@
  * to customize this controller
  */
 
-module.exports = {};
+module.exports = {
+    async find(ctx) {
+        return strapi.config.functions.meetups();
+    }
+};
