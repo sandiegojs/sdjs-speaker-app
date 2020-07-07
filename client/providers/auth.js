@@ -1,24 +1,27 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import Cookies from 'js-cookie';
 import Router from "next/router";
 
 import { AuthToken } from '../lib/auth';
-import LOGIN_MUTATION from "../apollo/mutations/auth/login";
+import LOGIN_MUTATION from '../apollo/mutations/auth/login';
+import ME_QUERY from '../apollo/queries/auth/me';
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
+    const token = Cookies.get('token');
     const [login] = useMutation(LOGIN_MUTATION);
+    const { data } = useQuery(ME_QUERY, { skip: !token });
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadUserFromCookies() {
-            const token = Cookies.get('token');
             if (token) {
                 const auth = new AuthToken(token);
                 if (auth.isExpired) console.log("hey! server says you shouldnt be here! you are not logged in!");
+                if (data) setUser(data);
             }
             setLoading(false)
         }
@@ -42,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: true, user, login: signin, loading, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated: !!user, user, login: signin, loading, logout }}>
             {children}
         </AuthContext.Provider>
     )
