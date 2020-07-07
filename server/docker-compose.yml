@@ -5,7 +5,7 @@ services:
     container_name: sdjs-mongo
     image: mongo
     environment:
-      - MONGO_INITDB_DATABASE=sdjs-speaker-app
+      - MONGO_INITDB_DATABASE=sdjs-speaker-api
     ports:
       - 27017:27017
     volumes:
