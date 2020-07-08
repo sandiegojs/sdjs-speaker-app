@@ -10,14 +10,14 @@ import ME_QUERY from '../apollo/queries/auth/me';
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    const token = Cookies.get('token');
     const [login] = useMutation(LOGIN_MUTATION);
-    const { data } = useQuery(ME_QUERY, { skip: !token });
+    const { data } = useQuery(ME_QUERY);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadUserFromCookies() {
+            const token = Cookies.get('token');
             if (token) {
                 const auth = new AuthToken(token);
                 if (auth.isExpired) console.log("hey! server says you shouldnt be here! you are not logged in!");
@@ -34,6 +34,9 @@ export const AuthProvider = ({ children }) => {
             password: password
           } }}).then(({ data: { login } }) => {
             AuthToken.storeToken(login.jwt);
+            if (data) {
+                setUser(data);
+            }
         })
     }
 
@@ -42,7 +45,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null)
         Router.push('/admin/signin')
     }
-
 
     return (
         <AuthContext.Provider value={{ isAuthenticated: !!user, user, login: signin, loading, logout }}>
