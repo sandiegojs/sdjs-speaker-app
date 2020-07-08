@@ -13,20 +13,17 @@ const Navbar = () => {
             </a>
             </Link>
             <div className='nav-items' >
-
+                    {isAuthenticated && (
                         <>
-                        <Link href='/admin/meetups'>
-                        MEETUPS
-                    </Link>
+
                     <div className={'nav-item'}>
                         <button onClick={() => logout()}>LOGOUT</button>
                     </div>
-
-
-                     (<Link href='/admin/signin'>
-                        SIGNIN
-                    </Link>
                     </>
+                    )}
+                    {!isAuthenticated && (<Link href='/admin/signin'>
+                        SIGNIN
+                    </Link>)}
             </div>
         </div>
     </div>
