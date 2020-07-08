@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         async function loadUserFromCookies() {
             const token = Cookies.get('token');
+            console.log("getToken", token);
             if (token) {
                 const auth = new AuthToken(token);
                 if (auth.isExpired) console.log("hey! server says you shouldnt be here! you are not logged in!");
@@ -26,16 +27,17 @@ export const AuthProvider = ({ children }) => {
             setLoading(false)
         }
         loadUserFromCookies()
-    }, [])
+    }, [data])
 
     const signin = async (email, password) => {
         login({ variables: { input: {
             identifier: email,
             password: password
-          } }}).then(({ data: { login } }) => {
-            AuthToken.storeToken(login.jwt);
+          } }}).then(res => {
+              Cookies.set('token', res.data.login.jwt)
             if (data) {
                 setUser(data);
+                Router.push('/admin/meetups');
             }
         })
     }
