@@ -151,5 +151,3 @@ $ git push -u origin [BRANCH-NAME]
 ```
 
 6. Open a new PR against the `master` branch from your fork using the GitHub user interface.
-
-![create pull request screenshot](readme-images/pull-request.png)
