@@ -123,18 +123,18 @@ $ git checkout master && git pull upstream master
 2. Create a new branch off of the `master` branch:
 
 ```sh
-$ git checkout -b [NEW BRANCH NAME]
+$ git checkout -b [NEW-BRANCH-NAME]
 ```
 
    > **Branch naming conventions:**
    >
-   > `fix/[BRANCH]` for bug fixes
+   > `fix/[BRANCH-NAME]` for bug fixes
    >
-   > `feature/[BRANCH]` for new features
+   > `feature/[BRANCH-NAME]` for new features
    >
-   > `dev/[BRANCH]` for non-user-facing changes
+   > `dev/[BRANCH-NAME]` for non-user-facing changes
    >
-   > The `[BRANCH]` portion should be kebab case. For example, if you want to update the `README.md` file, your branch could be called `dev/update-readme`.
+   > The `[BRANCH-NAME]` portion should be kebab case. For example, if you want to update the `README.md` file, your branch could be called `dev/update-readme`.
 
 4. Make changes and commit them:
 
@@ -147,7 +147,7 @@ $ git add . && git commit -m "[YOUR COMMIT MESSAGE]"
 5. Push your branch to your fork:
 
 ```sh
-$ git push -u origin [BRANCH NAME]
+$ git push -u origin [BRANCH-NAME]
 ```
 
 6. Open a new PR against the `master` branch from your fork using the GitHub user interface.
