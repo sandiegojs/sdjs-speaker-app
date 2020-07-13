@@ -26,10 +26,21 @@ Make sure to have these items installed. If you need help installing any of thes
 
 ![clone repo screenshot](readme-images/button_clone-repo.png)
 
-   > `git clone https://github.com/${YOUR-USERNAME}/sdjs-speaker-app.git`
-3. Make sure you are in the right directory: `cd sdjs-speaker-app`
+```sh
+$ git clone https://github.com/${YOUR-USERNAME}/sdjs-speaker-app.git
+```
+
+3. Make sure you are in the right directory:
+
+```sh
+$ cd sdjs-speaker-app
+```
+
 4. Add an `upstream` remote for keeping your local repository up-to-date:
-   > `git remote add upstream https://github.com/sandiegojs/sdjs-speaker-app.git`
+
+```sh
+$ git remote add upstream https://github.com/sandiegojs/sdjs-speaker-app.git
+```
 
 #### Spinning up server
 
