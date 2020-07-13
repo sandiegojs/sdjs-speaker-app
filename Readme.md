@@ -10,7 +10,7 @@ You can learn how from this _free_ series: [How to Contribute to an Open Source 
 
 #### Pre Requisites
 
-Make sure to have these items installed. If you need help installing any of these, ask for help on the sdjs slack.
+Make sure to have these items installed. If you need help installing any of these, ask for help on the [SDJS Slack](https://sdjs.slack.com/).
 
 1. node 10<=x<=12
 2. npm (x>=6)
