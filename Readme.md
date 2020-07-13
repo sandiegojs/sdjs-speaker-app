@@ -42,7 +42,7 @@ $ cd sdjs-speaker-app
 $ git remote add upstream https://github.com/sandiegojs/sdjs-speaker-app.git
 ```
 
-#### Spinning up server
+#### Spinning up the Server
 
 Within the server folder, we'll startup the database and backend.
 
@@ -56,12 +56,15 @@ We'll run this docker-compose command to get MongoDB running. (This may take a w
 $ docker-compose up -d
 ```
 
-The `-d` tells docker to run in the background, later if we want to see logs from the db we can use `docker-compose logs --tail`
+The `-d` tells docker to run in the background, later if we want to see logs from the db we can use: 
+
+```sh
+docker-compose logs --tail
+```
 
 We'll need to make a copy of the `.env` file.
 
-> Note: The admin user is only created when there is none in the db,
-> so make sure to change those variables _before_ running the server for the first time.
+> Note: The admin user is only created when there is none in the db, so make sure to change those variables _before_ running the server for the first time.
 
 ```sh
 $ cp .env.example .env
