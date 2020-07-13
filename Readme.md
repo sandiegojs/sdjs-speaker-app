@@ -19,9 +19,13 @@ Make sure to have these items installed. If you need help installing any of thes
 ### Getting Started
 
 1. Fork the project
+
 ![fork repo screenshot](readme-images/button_fork.png)
+
 2. Clone your fork
+
 ![clone repo screenshot](readme-images/button_clone-repo.png)
+
    > `git clone https://github.com/${YOUR-USERNAME}/sdjs-speaker-app.git`
 3. Make sure you are in the right directory: `cd sdjs-speaker-app`
 4. Add an `upstream` remote for keeping your local repository up-to-date:
