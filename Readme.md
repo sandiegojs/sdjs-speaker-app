@@ -114,26 +114,42 @@ $ npm i && npm run dev
 
 ### Creating a new PR
 
-1. Make sure you are on the `master` branch, and you have pulled the latest changes
+1. Make sure you are on the `master` branch, and you have pulled the latest changes:
 
-   > `git checkout master && git pull upstream master`
+```sh
+$ git checkout master && git pull upstream master
+```
 
-2. Create a new branch off of the `master` branch
+2. Create a new branch off of the `master` branch:
 
-   > `git checkout -b [NEW BRANCH NAME]`
+```sh
+$ git checkout -b [NEW BRANCH NAME]
+```
 
    > **Branch naming conventions:**
+   >
    > `fix/[BRANCH]` for bug fixes
+   >
    > `feature/[BRANCH]` for new features
+   >
    > `dev/[BRANCH]` for non-user-facing changes
    >
-   > The `[BRANCH]` portion should be kebab case. For example, if you want to update the README.md file, your branch could be called `dev/update-readme`
+   > The `[BRANCH]` portion should be kebab case. For example, if you want to update the `README.md` file, your branch could be called `dev/update-readme`.
 
-4. Make changes and commit them. `git add . && git commit -m "[YOUR COMMIT MESSAGE]"`
+4. Make changes and commit them:
 
-   > The subject of a commit message (the first line) should be 72 characters or less. If you need more room for a longer explanation of your changes, you can add a blank line below the subject and write a commit body. The commit message should be in present-imperative tense ("Update README.md" rather than "Updates" or "Updated").
+```sh
+$ git add . && git commit -m "[YOUR COMMIT MESSAGE]"
+```
 
-5. Push your branch to your fork: `git push -u origin [BRANCH NAME]`
+> The subject of a commit message (the first line) should be 72 characters or less. If you need more room for a longer explanation of your changes, you can add a blank line below the subject and write a commit body. The commit message should be in present-imperative tense ("Update README.md" rather than "Updates" or "Updated").
 
-6. Open a new PR against the `master` branch from your fork using the GitHub user interface
+5. Push your branch to your fork:
+
+```sh
+$ git push -u origin [BRANCH NAME]
+```
+
+6. Open a new PR against the `master` branch from your fork using the GitHub user interface.
+
 ![create pull request screenshot](readme-images/pull-request.png)
