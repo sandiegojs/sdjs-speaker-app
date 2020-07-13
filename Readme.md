@@ -88,26 +88,26 @@ $ npm i && npm run dev
 
 ### Reporting Bugs
 
-1. Navigate to the "issues" tab, or [click here](https://github.com/sandiegojs/sdjs-speaker-app/issues)
+1. Click the "Issues" tab, or use [this link](https://github.com/sandiegojs/sdjs-speaker-app/issues) to navigate there:
 
 ![issues tab screenshot](readme-images/tab_issues.png)
 
-2. Click on the "New issue" button
+2. Click on the "New issue" button:
 
 ![new issue button screenshot](readme-images/button_new-issue.png)
 
-3. Click on the "Get started" button to open a new bug report
+3. Click on the "Get started" button to open a new bug report:
 
 ![bug report get started screenshot](readme-images/button_bug-report-get-started.png)
 
-  - Create a title (keep it short and descriptive)
-  - Fill in the template with specific information about the bug
+  - Create a title (keep it short and descriptive).
+  - Fill in the template with specific information about the bug.
 
-4. Click on the gear icon next to "Labels" and select the difficulty level required to fix the bug
+4. Click on the gear icon next to "Labels" and select the difficulty level required to fix the bug:
 
 ![difficulty level screenshot](readme-images/labels_difficulty-level.png)
 
-5. Scroll to the bottom of the page and click on the "Submit new issue" button
+5. Scroll to the bottom of the page and click on the "Submit new issue" button:
 
 ![submit new issue screenshot](readme-images/button_submit-new-issue.png)
 
