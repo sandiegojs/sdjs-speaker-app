@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Signup = () => {
+const Signup = ({ meetups }) => {
 
     const [data, setData] = useState({
         speakerName: '',
@@ -14,6 +14,11 @@ const Signup = () => {
         setData({ ...data, [e.target.name]: e.target.value })
     };
 
+    const handleSelect = e => {
+        const selectedIndex = e.target.options.selectedIndex;
+        setData({ ...data, meetupId: e.target.options[selectedIndex].getAttribute('data-key') });
+    }
+
     const register = async e => {
         e.preventDefault();
         const response = await fetch(`${process.env.API_BASE_URL}/talks`, {
@@ -26,7 +31,8 @@ const Signup = () => {
               speaker_email: data.speakerEmail,
               speaker_phone: data.speakerPhone,
               description: data.description,
-              topic: data.topic
+              topic: data.topic,
+              meetupId: data.meetupId
             })
         });
     }
@@ -49,9 +55,13 @@ const Signup = () => {
                             <input type="tel" name="speakerPhone" id='speakerPhone' onChange={handleChange} required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" format="### ### ####" />
                         </div>
                         <div>
-                            <label htmlFor='event-date'>Date Requested: </label>
-                            <select name='date' id='event-date' type='select' required>
-                                <option>Select a Date</option>
+                            <label htmlFor='meetup'>Meetup: </label>
+                            <select name='meetup' id='meetup' type='select' onChange={handleSelect} required>
+                                <option>Select a Meetup</option>
+                                {meetups && meetups.map(event => {
+                                    return (
+									<option key={event.meetupId} data-key={event.meetupId}>{event.name}</option>
+								)})}
                             </select>
                         </div>
                         <div>
@@ -70,5 +80,11 @@ const Signup = () => {
             </div>
     )
 }
+
+Signup.getInitialProps = async (ctx) => {
+    const events = await fetch(`${process.env.API_BASE_URL}/events`);
+    const eventsData = await events.json();
+    return { meetups: eventsData }
+  }
 
 export default Signup;
