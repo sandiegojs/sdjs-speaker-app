@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import { useEffect, useState } from 'react';
+import { getTokenFromLocalCookie } from '../lib/auth';
 
 function initialState(args) {
   return {
@@ -17,6 +18,9 @@ export default (url, options = {}) => {
     const fetchData = async () => {
       try {
         const res = await fetch(process.env.API_BASE_URL + url, {
+          headers: {
+            'Authorization': "Bearer " + getTokenFromLocalCookie()
+          },
           ...options
         });
 
