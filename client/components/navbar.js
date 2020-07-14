@@ -27,15 +27,24 @@ const Navbar = () => {
                         </div>) : ('')}
                     {!loading &&
                     (user ? (
+                        <>
+                        <div className={'nav-item'}>
+                                <Link href='/admin/meetups'>
+                                    MEETUPS
+                                </Link>
+                            </div>
                         <span className="navbar-text">
                         Welcome back <b>{user}</b>!
                         </span>
+                        </>
                     ) : (''))}
                     {!loading && (
                         user ? (
+                            <>
                             <div className={'nav-item'}>
                                 <button onClick={() => logout()}>LOGOUT</button>
                             </div>
+                            </>
                         ) : (' ')
                     )}
             </div>
