@@ -1,6 +1,9 @@
 import Query from "../../components/query";
 import MEETUPS_QUERY from "../../apollo/queries/meetup/meetups";
 
+import { PrivateRoute } from '../../hocs/PrivateRoute';
+
+
 const AdminMeetups = () => {
     return (
         <Query query={MEETUPS_QUERY} id={null}>
@@ -33,4 +36,4 @@ const AdminMeetups = () => {
     );
 }
 
-export default AdminMeetups;
+export default PrivateRoute(AdminMeetups);
