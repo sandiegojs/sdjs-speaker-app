@@ -18,11 +18,11 @@ Make sure to have these items installed. If you need help installing any of thes
 
 ### Getting Started
 
-1. Fork the project
+1. Fork the project:
 
 ![fork repo screenshot](readme-images/button_fork.png)
 
-2. Clone your fork
+2. Clone your fork:
 
 ![clone repo screenshot](readme-images/button_clone-repo.png)
 
@@ -44,13 +44,13 @@ $ git remote add upstream https://github.com/sandiegojs/sdjs-speaker-app.git
 
 #### Spinning up the Server
 
-Within the server folder, we'll startup the database and backend.
+Within the server folder, we'll startup the database and backend:
 
 ```sh
 $ cd sdjs-speaker-app/server
 ```
 
-We'll run this docker-compose command to get MongoDB running. (This may take a while the first time.)
+We'll run this docker-compose command to get MongoDB running. (This may take a while the first time.):
 
 ```sh
 $ docker-compose up -d
@@ -62,7 +62,7 @@ The `-d` tells docker to run in the background, later if we want to see logs fro
 docker-compose logs --tail
 ```
 
-We'll need to make a copy of the `.env` file.
+We'll need to make a copy of the `.env` file:
 
 > Note: The admin user is only created when there is none in the db, so make sure to change those variables _before_ running the server for the first time.
 
@@ -70,7 +70,7 @@ We'll need to make a copy of the `.env` file.
 $ cp .env.example .env
 ```
 
-Finally to run the backend app and initialize some config in the db, we'll install the dependencies and run the server.
+Finally to run the backend app and initialize some config in the db, we'll install the dependencies and run the server:
 
 ```sh
 $ npm i && npm run develop
@@ -78,7 +78,7 @@ $ npm i && npm run develop
 
 #### Initializing the Frontend App
 
-If you're going to run both apps at the same time, make sure to use a new terminal window/tab
+If you're going to run both apps at the same time, make sure to use a new terminal window/tab:
 
 ```sh
 $ cd sdjs-speaker-app/client
