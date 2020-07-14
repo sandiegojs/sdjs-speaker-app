@@ -13,7 +13,7 @@ const Layout = ({ children }) => (
     </Head>
     <Nav />
     {children}
-  </>
+    </>
 )
 
 export default Layout

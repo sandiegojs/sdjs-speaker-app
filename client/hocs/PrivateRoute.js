@@ -1,15 +1,14 @@
 import { useEffect } from 'react'
-import useAuth from '../providers/auth';
-import Router, { useRouter } from 'next/router'
+import { useUser } from '../lib/user';
+import Router from 'next/router';
 
 export function PrivateRoute(Component) {
     return () => {
-        const { user, isAuthenticated, loading } = useAuth();
-        const router = useRouter()
+        const { user, loading } = useUser();
 
         useEffect(() => {
-            if (!isAuthenticated && !loading) Router.push('/admin/signin')
-        }, [loading, isAuthenticated])
+            if (!user && !loading) Router.push('/admin/signin')
+        }, [loading, user])
 
         return (<Component {...arguments} />)
     }

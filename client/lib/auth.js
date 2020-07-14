@@ -1,43 +1,65 @@
-import Cookie from "js-cookie";
-import Router from "next/router";
-import jwtDecode from "jwt-decode";
+import Router from 'next/router';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
-const TOKEN_STORAGE_KEY = "token";
-
-export class AuthToken {
-
-  decodedToken
-
-  constructor(token) {
-    // we are going to default to an expired decodedToken
-    this.decodedToken = { email: "", exp: 0 };
-
-    // then try and decode the jwt using jwt-decode
-    try {
-      if (token) this.decodedToken = jwtDecode(token);
-    } catch (e) {
-      console.log(e);
-    }
+export const setToken = token => {
+  if (!process.browser) {
+    return;
   }
 
-  get authorizationString() {
-    return `Bearer ${this.token}`;
+  Cookies.set('username', token.user.username);
+  Cookies.set('jwt', token.jwt);
+  Cookies.set('_id', token.user._id);
+
+  if (Cookies.get('username')) {
+    Router.reload('/');
+  }
+};
+
+export const unsetToken = () => {
+  if (!process.browser) {
+    return;
   }
 
-  get expiresAt() {
-    return new Date(this.decodedToken.exp * 1000);
-  }
+  Cookies.remove('jwt');
+  Cookies.remove('username');
+  Cookies.remove('_id');
 
-  get isExpired() {
-    return new Date() > this.expiresAt;
-  }
+  Router.reload('/');
+}
 
-  get isValid() {
-    return !this.isExpired;
-  }
+export const getUserFromLocalCookie = () => {
+  return Cookies.get('username');
+}
 
-  static async storeToken(token) {
-    Cookie.set(TOKEN_STORAGE_KEY, token);
-    await Router.push("/admin/meetups");
+export const getTokenFromLocalCookie = () => {
+  return Cookies.get('jwt');
+}
+
+export const getTokenFromServerCookie = req => {
+  if (!req.headers.cookie || '') {
+    return undefined;
   }
+  const jwtCookie = req.headers.cookie
+    .split(';')
+    .find(c => c.trim().startsWith('jwt='));
+  if (!jwtCookie) {
+    return undefined;
+  }
+  const jwt = jwtCookie.split('=')[1];
+  return jwt;
+}
+
+export const getIdFromServerCookie = req => {
+  if (!req.headers.cookie || '') {
+    return undefined;
+  }
+  const idCookie = req.headers.cookie
+    .split(';')
+    .find(c => c.trim().startsWith('_id='));
+  if (!idCookie) {
+    return undefined;
+  }
+  const id = idCookie.split('=')[1];
+  return id;
 }

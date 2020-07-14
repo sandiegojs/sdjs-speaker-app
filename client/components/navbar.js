@@ -1,9 +1,15 @@
 import Link from 'next/link';
 
-import useAuth from '../providers/auth';
+import { useUser } from '../lib/user';
+import { unsetToken } from '../lib/auth';
 
 const Navbar = () => {
-    const { logout, isAuthenticated } = useAuth();
+    const { user, loading } = useUser();
+
+    const logout = () => {
+        unsetToken();
+    }
+
     return (
         <div className='home-nav'>
         <div className='navbar'>
@@ -13,17 +19,25 @@ const Navbar = () => {
             </a>
             </Link>
             <div className='nav-items' >
-                    {isAuthenticated && (
-                        <>
-
-                    <div className={'nav-item'}>
-                        <button onClick={() => logout()}>LOGOUT</button>
-                    </div>
-                    </>
+                     {!loading && !user ? (
+                         <div className={'nav-item'}>
+                         <Link href='/admin/signin'>
+                            SIGNIN
+                        </Link>
+                        </div>) : ('')}
+                    {!loading &&
+                    (user ? (
+                        <span className="navbar-text">
+                        Welcome back <b>{user}</b>!
+                        </span>
+                    ) : (''))}
+                    {!loading && (
+                        user ? (
+                            <div className={'nav-item'}>
+                                <button onClick={() => logout()}>LOGOUT</button>
+                            </div>
+                        ) : (' ')
                     )}
-                    {!isAuthenticated && (<Link href='/admin/signin'>
-                        SIGNIN
-                    </Link>)}
             </div>
         </div>
     </div>
