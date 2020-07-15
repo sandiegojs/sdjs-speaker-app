@@ -1,16 +1,15 @@
 import '../assets/scss/style.scss';
 import Layout from '../components/layout';
-import { useFetchUser, UserProvider } from '../lib/user';
+import { UserProvider } from '../lib/user';
 
 const App = ({ Component, pageProps }) => {
-  const { user, loading } = useFetchUser();
   return (
-    <UserProvider value={{ user, loading }}>
+    <UserProvider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </UserProvider>
-  )
+  );
 };
 
 export default App;
