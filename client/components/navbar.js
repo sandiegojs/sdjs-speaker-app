@@ -29,6 +29,11 @@ const Navbar = () => {
                     (user ? (
                         <>
                         <div className={'nav-item'}>
+                                <Link href='/admin/organizers'>
+                                    ORGANIZERS
+                                </Link>
+                            </div>
+                        <div className={'nav-item'}>
                                 <Link href='/admin/meetups'>
                                     MEETUPS
                                 </Link>
