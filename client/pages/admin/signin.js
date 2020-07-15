@@ -1,51 +1,80 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 import { setToken } from '../../lib/auth';
 
+import Cookies from 'js-cookie';
+import { useUser } from '../../lib/user';
+
 const AdminSignin = () => {
+  const router = useRouter();
+  const { user, setUser, loading, setLoading } = useUser();
 
   const [data, setData] = useState({
     identifier: '',
-    password: ''
+    password: '',
   });
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const response = await fetch(`${process.env.API_BASE_URL}/auth/local`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         identifier: data.identifier,
-        password: data.password
-      })
+        password: data.password,
+      }),
     });
     const responseData = await response.json();
-    setToken(responseData);
-  }
+    setToken(responseData, router);
 
-  const handleChange = e => {
-    setData({ ...data, [e.target.name]: e.target.value })
+    const userCookie = Cookies.get('username');
+    if (userCookie) {
+      setUser(userCookie);
+      router.push('/');
+    }
   };
 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   return (
-    <div id='admin-top-div'>
-      <div className='signUp-container'>
-        <div className='form-container login'>
+    <div id="admin-top-div">
+      <div className="signUp-container">
+        <div className="form-container login">
           <form onSubmit={handleSubmit}>
             <h3>SDJS Admin Login</h3>
             <div className="container">
-              <label htmlFor="username"><b>Username</b></label>
-              <input type="text" placeholder="Username" id='identifier' name="identifier" onChange={handleChange}
-              required />
-              <label htmlFor="password"><b>Password</b></label>
-              <input type="password" placeholder="Password" id='password' onChange={handleChange} name="password" required />
-              <button type="submit" id='submit' className='btn'>Login</button>
-              <label id='remember'>
+              <label htmlFor="username">
+                <b>Username</b>
+              </label>
+              <input
+                type="text"
+                placeholder="Username"
+                id="identifier"
+                name="identifier"
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="password">
+                <b>Password</b>
+              </label>
+              <input
+                type="password"
+                placeholder="Password"
+                id="password"
+                onChange={handleChange}
+                name="password"
+                required
+              />
+              <button type="submit" id="submit" className="btn">
+                Login
+              </button>
+              <label id="remember">
                 <input type="checkbox" name="remember" /> Remember me
               </label>
             </div>
@@ -53,8 +82,7 @@ const AdminSignin = () => {
         </div>
       </div>
     </div>
-  )
-}
-
+  );
+};
 
 export default AdminSignin;
