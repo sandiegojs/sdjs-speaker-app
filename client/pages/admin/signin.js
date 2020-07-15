@@ -34,7 +34,7 @@ const AdminSignin = () => {
     const userCookie = Cookies.get('username');
     if (userCookie) {
       setUser(userCookie);
-      router.push('/');
+      router.push('/admin/meetups');
     }
   };
 
