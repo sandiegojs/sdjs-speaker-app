@@ -7,7 +7,7 @@ function initialState(args) {
     response: null,
     error: null,
     isLoading: true,
-    ...args
+    ...args,
   };
 }
 
@@ -19,23 +19,23 @@ export default (url, options = {}) => {
       try {
         const res = await fetch(process.env.API_BASE_URL + url, {
           headers: {
-            'Authorization': "Bearer " + getTokenFromLocalCookie()
+            Authorization: 'Bearer ' + getTokenFromLocalCookie(),
           },
-          ...options
+          ...options,
         });
 
         if (res.status >= 400) {
           setState(
             initialState({
               error: await res.json(),
-              isLoading: false
+              isLoading: false,
             })
           );
         } else {
           setState(
             initialState({
               response: await res.json(),
-              isLoading: false
+              isLoading: false,
             })
           );
         }
@@ -43,9 +43,9 @@ export default (url, options = {}) => {
         setState(
           initialState({
             error: {
-              error: error.message
+              error: error.message,
             },
-            isLoading: false
+            isLoading: false,
           })
         );
       }

@@ -8,7 +8,7 @@ import { useUser } from '../../lib/user';
 
 const AdminSignin = () => {
   const router = useRouter();
-  const { user, setUser, loading, setLoading } = useUser();
+  const { setUser } = useUser();
 
   const [data, setData] = useState({
     identifier: '',

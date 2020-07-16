@@ -1,5 +1,4 @@
 import Router from 'next/router';
-import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
 
 export const setToken = (token) => {
@@ -36,7 +35,9 @@ export const getTokenFromServerCookie = (req) => {
   if (!req.headers.cookie || '') {
     return undefined;
   }
-  const jwtCookie = req.headers.cookie.split(';').find((c) => c.trim().startsWith('jwt='));
+  const jwtCookie = req.headers.cookie
+    .split(';')
+    .find((c) => c.trim().startsWith('jwt='));
   if (!jwtCookie) {
     return undefined;
   }
@@ -48,7 +49,9 @@ export const getIdFromServerCookie = (req) => {
   if (!req.headers.cookie || '') {
     return undefined;
   }
-  const idCookie = req.headers.cookie.split(';').find((c) => c.trim().startsWith('_id='));
+  const idCookie = req.headers.cookie
+    .split(';')
+    .find((c) => c.trim().startsWith('_id='));
   if (!idCookie) {
     return undefined;
   }
