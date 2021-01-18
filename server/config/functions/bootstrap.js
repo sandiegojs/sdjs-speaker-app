@@ -32,34 +32,34 @@ module.exports = async () => {
 
   await setDefaultRole();
 
-  // prettier-ignore
-  { // block is here purely to stop prettier
-    await setPermission("public", "application", "event",   "find",     true);
-    await setPermission("public", "application", "event",   "findone",  true);
-    await setPermission("public", "application", "talk",    "find",     true);
-    await setPermission("public", "application", "talk",    "findone",  true);
-    await setPermission("speaker", "application", "talk",   "create",   true);
+  await setPermission("public", "application", "event", "find", true);
+  await setPermission("public", "application", "event", "findone", true);
+  await setPermission("public", "application", "talk", "find", true);
+  await setPermission("public", "application", "talk", "findone", true);
 
-    await setPermission("speaker", "application", "event",  "find",     true);
-    await setPermission("speaker", "application", "event",  "findone",  true);
-    await setPermission("speaker", "application", "talk",   "find",     true);
-    await setPermission("speaker", "application", "talk",   "findone",  true);
-    await setPermission("speaker", "application", "talk",   "create",   true);
+  await setPermission("speaker", "application", "event", "find", true);
+  await setPermission("speaker", "application", "event", "findone", true);
+  await setPermission("speaker", "application", "talk", "find", true);
+  await setPermission("speaker", "application", "talk", "findone", true);
+  await setPermission("speaker", "application", "talk", "create", true);
 
-    await setPermission("authenticated", "application", "event",  "count",    true);
-    await setPermission("authenticated", "application", "event",  "create",   true);
-    await setPermission("authenticated", "application", "event",  "delete",   true);
-    await setPermission("authenticated", "application", "event",  "find",     true);
-    await setPermission("authenticated", "application", "event",  "findone",  true);
-    await setPermission("authenticated", "application", "event",  "update",   true);
+  await setPermission("authenticated", "users-permissions", "user", "find", true);
+  await setPermission("authenticated", "users-permissions", "user", "create", true);
+  await setPermission("authenticated", "users-permissions", "user", "destroy", true);
 
-    await setPermission("authenticated", "application", "talk",   "count",    true);
-    await setPermission("authenticated", "application", "talk",   "create",   true);
-    await setPermission("authenticated", "application", "talk",   "delete",   true);
-    await setPermission("authenticated", "application", "talk",   "find",     true);
-    await setPermission("authenticated", "application", "talk",   "findone",  true);
-    await setPermission("authenticated", "application", "talk",   "update",   true);
-  }
+  await setPermission("authenticated", "application", "event", "count", true);
+  await setPermission("authenticated", "application", "event", "create", true);
+  await setPermission("authenticated", "application", "event", "delete", true);
+  await setPermission("authenticated", "application", "event", "find", true);
+  await setPermission("authenticated", "application", "event", "findone", true);
+  await setPermission("authenticated", "application", "event", "update", true);
+
+  await setPermission("authenticated", "application", "talk", "count", true);
+  await setPermission("authenticated", "application", "talk", "create", true);
+  await setPermission("authenticated", "application", "talk", "delete", true);
+  await setPermission("authenticated", "application", "talk", "find", true);
+  await setPermission("authenticated", "application", "talk", "findone", true);
+  await setPermission("authenticated", "application", "talk", "update", true);
 };
 
 async function initializeAdmin() {
