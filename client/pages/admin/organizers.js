@@ -1,9 +1,40 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { PrivateRoute } from '../../hocs/PrivateRoute';
 import api from '../../lib/api';
+import { getTokenFromLocalCookie } from '../../lib/auth';
 
 const Organizers = () => {
+  const router = useRouter();
   const { response, isLoading } = api('/users');
+
+  const handleDelete = async (e) => {
+    const id = e.target.id;
+    const name = e.target.getAttribute('name');
+
+    if (confirm(`Are you sure you want to delete ${name}?`)) {
+      try {
+        const response = await fetch(
+          `${process.env.API_BASE_URL}/users/${id}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + getTokenFromLocalCookie(),
+            },
+            method: 'DELETE',
+          }
+        );
+
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+
+        router.reload();
+      } catch (error) {
+        alert(error);
+      }
+    }
+  };
+
   return (
     <div className="top-div">
       <div className="organizer-container">
@@ -62,7 +93,12 @@ const Organizers = () => {
                         </div>
                         <div>
                           <i className="far fa-edit" name={user.id}></i>
-                          <i className="fas fa-trash-alt" name={user.id}></i>
+                          <i
+                            className="fas fa-trash-alt"
+                            id={user.id}
+                            name={user.name}
+                            onClick={handleDelete}
+                          ></i>
                         </div>
                       </div>
                     </div>
