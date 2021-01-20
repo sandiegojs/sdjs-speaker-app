@@ -7,9 +7,15 @@
     },
     "plugins": [
       "react",
-      "react-hooks"
+      "react-hooks",
+      "cypress"
     ],
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended",
+      "plugin:cypress/recommended"
+    ],
     "parserOptions": {
       "sourceType": "module",
       "ecmaVersion": 2018
