@@ -18,23 +18,33 @@ const AdminSignin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`${process.env.API_BASE_URL}/auth/local`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        identifier: data.identifier,
-        password: data.password,
-      }),
-    });
-    const responseData = await response.json();
-    setToken(responseData, router);
+    try {
+      const response = await fetch(`${process.env.API_BASE_URL}/auth/local`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          identifier: data.identifier,
+          password: data.password,
+        }),
+      });
 
-    const userCookie = Cookies.get('username');
-    if (userCookie) {
-      setUser(userCookie);
-      router.push('/admin/meetups');
+      const responseData = await response.json();
+
+      if (responseData.error) {
+        throw Error(responseData.data[0].messages[0].message);
+      }
+
+      setToken(responseData, router);
+
+      const userCookie = Cookies.get('username');
+      if (userCookie) {
+        setUser(userCookie);
+        router.push('/admin/meetups');
+      }
+    } catch (error) {
+      alert(error);
     }
   };
 
