@@ -5,4 +5,8 @@
  * to customize this service
  */
 
-module.exports = {};
+module.exports = {
+    async add(values) {
+        return strapi.query('talk').create(values);
+    }
+};
