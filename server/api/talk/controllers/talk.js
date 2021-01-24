@@ -13,7 +13,7 @@ module.exports = {
     async create(ctx) {
         const {
             description,
-            meetupId,
+            event_id,
             speaker_email,
             speaker_name,
             speaker_phone,
@@ -21,7 +21,7 @@ module.exports = {
         } = ctx.request.body
 
         if (!description) return ctx.badRequest('missing.description');
-        if (!meetupId) return ctx.badRequest('missing.meetupId');
+        if (!event_id) return ctx.badRequest('missing.event_id');
         if (!speaker_email) return ctx.badRequest('missing.speaker_email');
         if (!speaker_name) return ctx.badRequest('missing.speaker_name');
         if (!speaker_phone) return ctx.badRequest('missing.speaker_phone');
@@ -43,20 +43,9 @@ module.exports = {
                 });
             }
 
-            let event = await strapi.services.event.fetch({ meetupId });
+            let event = await strapi.services.event.fetch({ id: event_id });
             if (!event) {
-                const meetups = await strapi.config.functions.meetups();
-
-                const meetup = meetups.find((meetup) => {
-                    return meetup.meetupId === meetupId;
-                });
-
-                event = await strapi.services.event.add({
-                    name: meetup.name,
-                    details: meetup.description,
-                    date: new Date(`${meetup.date}T00:00:00-08:00`),
-                    meetupId: meetup.meetupId,
-                });
+                throw Error('Event not found.')
             }
 
             const talk = await strapi.services.talk.add({

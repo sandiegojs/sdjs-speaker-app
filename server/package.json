@@ -11,6 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "dayjs": "^1.10.4",
     "strapi": "3.0.5",
     "strapi-admin": "3.0.5",
     "strapi-connector-mongoose": "3.0.5",

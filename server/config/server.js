@@ -4,4 +4,7 @@ module.exports = ({ env }) => ({
   admin: {
     watchIgnoreFiles: ["**/db/**"],
   },
+  cron: {
+    enabled: true,
+  },
 });
