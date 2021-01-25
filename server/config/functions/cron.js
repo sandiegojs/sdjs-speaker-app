@@ -12,10 +12,13 @@
 
 module.exports = {
   /**
-   * Simple example.
-   * Every monday at 1am.
+   * Every 10 minutes.
    */
-  // '0 1 * * 1': () => {
-  //
-  // }
+  '*/10 * * * *': async () => {
+    try {
+      await strapi.config.functions.createEventsFromMeetups();
+    } catch(error) {
+      console.log(errpr)
+    }
+  }
 };

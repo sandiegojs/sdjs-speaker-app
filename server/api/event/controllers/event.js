@@ -6,7 +6,5 @@
  */
 
 module.exports = {
-    async find(ctx) {
-        return strapi.config.functions.meetups();
-    }
+
 };
