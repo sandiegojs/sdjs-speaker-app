@@ -24,7 +24,9 @@ const Navbar = () => {
         <div className="nav-items">
           {!loading && !user ? (
             <div className={'nav-item'}>
-              <Link href="/admin/signin">SIGNIN</Link>
+              <Link href="/admin/signin">
+                <a>SIGNIN</a>
+              </Link>
             </div>
           ) : (
             ''
@@ -33,10 +35,14 @@ const Navbar = () => {
             (user ? (
               <>
                 <div className={'nav-item'}>
-                  <Link href="/admin/organizers">ORGANIZERS</Link>
+                  <Link href="/admin/organizers">
+                    <a>ORGANIZERS</a>
+                  </Link>
                 </div>
                 <div className={'nav-item'}>
-                  <Link href="/admin/meetups">MEETUPS</Link>
+                  <Link href="/admin/meetups">
+                    <a>MEETUPS</a>
+                  </Link>
                 </div>
                 <span className="navbar-text">
                   Welcome back <b>{user}</b>!
