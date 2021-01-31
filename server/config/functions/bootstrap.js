@@ -63,17 +63,21 @@ module.exports = async () => {
 };
 
 async function initializeAdmin() {
-  const adminModel = strapi.query("administrator", "admin");
-  const admin = await adminModel.findOne({ username: "admin" });
+  const admin = await strapi.query("user", "admin").findOne({ username: "admin" });
 
   if (!admin) {
     strapi.log.info(`creating admin user`);
-    await adminModel.create({
-      username: process.env.ADMIN_USERNAME,
+
+    const superAdminRole = await strapi.admin.services.role.getSuperAdmin();
+
+    await strapi.query("user", "admin").create({
+      username: 'admin',
+      email: process.env.ADMIN_EMAIL,
       password: await strapi.admin.services.auth.hashPassword(
         process.env.ADMIN_PASSWORD
       ),
-      email: process.env.ADMIN_EMAIL,
+      roles: [superAdminRole.id],
+      isActive: true,
     });
   }
 }
