@@ -76,7 +76,7 @@ async function initializeAdmin() {
       password: await strapi.admin.services.auth.hashPassword(
         process.env.ADMIN_PASSWORD
       ),
-      roles: [superAdminRole.id,],
+      roles: [superAdminRole.id],
       isActive: true,
     });
   }
