@@ -56,7 +56,7 @@ We'll run this docker-compose command to get MongoDB running. (This may take a w
 $ docker-compose up -d
 ```
 
-The `-d` tells docker to run in the background, later if we want to see logs from the db we can use: 
+The `-d` tells docker to run in the background, later if we want to see logs from the db we can use:
 
 ```sh
 docker-compose logs --tail
@@ -68,6 +68,17 @@ We'll need to make a copy of the `.env` file:
 
 ```sh
 $ cp .env.example .env
+```
+
+We'll need to generate two secure token for the authentication systems.
+```sh
+$ node -e "console.log(require('crypto').randomBytes(64).toString('base64'))"
+```
+
+Add the generated value to your env variables in the `.env` file.
+```sh
+JWT_SECRET=token_generated_from_above
+ADMIN_JWT_SECRET=second_token_generated_from_above
 ```
 
 Finally to run the backend app and initialize some config in the db, we'll install the dependencies and run the server:
